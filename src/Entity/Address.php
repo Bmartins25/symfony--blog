@@ -8,58 +8,113 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * @ORM\Entity()
  */
-class User
+class Address
 {
-    /**
-     * @ORM\Id()
-     * @ORM\Column(type="integer")
-     * @ORM\GeneratedValue()
-     */
-    private int $id;
+  /**
+   * @ORM\Id()
+   * @ORM\Column(type="integer")
+   * @ORM\GeneratedValue() 
+   */
+  private int $id;
 
-    /**
-     * @ORM\Column(type="string", length=100)
-     * @Assert\NotBlank(message="O título do post é obrigatório")
-     * @Assert\Length(
-     *     min=3,
-     *     max=100,
-     *     minMessage="O título do post deve ter pelo menos 3 caracteres"
-     * )
-     */
-    private string $Address;
+  /**
+   * @ORM\Column(type="string")
+   */
+  private String $state;
 
-    /**
-     * @ORM\Column(type="text")
-     * @Assert\NotBlank()
-     */
+  /**
+   * @ORM\Column(type="string")
+   */
+  private String $city;
+
+  /**
+   * @ORM\Column(type="string")
+   */
+  private String $district;
+
+  /**
+   * @ORM\Column(type="string")
+   */
+  private String $street;
+
+  /**
+   * @ORM\Column(type="integer")
+   */
+  private int $number;
+
+  /**
+   * @ORM\Column(type="string")
+   */
+  private String $complement;
+
+  public function __construct()
+  {
     
-    private \DateTime $createdAt;
+  }
 
-    /**
-     * @ORM\Column(type="datetime", nullable=true)
-     */
-    private ?\DateTime $updatedAt = null;
+  public function getId(): int
+  {
+    return $this->id;
+  }
 
-    public function __construct()
-    {
-        $this->createdAt = new \DateTime();
-    }
+  public function getState(): string
+  {
+    return $this->state;
+  }
 
-    public function getId(): int
-    {
-        return $this->id;
-    }
+  public function setState(string $state): void
+  {
+    $this->state = $state;
+  }
 
-    public function getAddress(): string
-    {
-        return $this->Address;
-    }
+  public function getCity(): string
+  {
+    return $this->city;
+  }
 
-    public function setAddress(string $Address): void
-    {
-        $this->updatedAt = new \DateTime();
-        $this->Address = $Address;
-    }
+  public function setCity(string $city): void
+  {
+    $this->city = $city;
+  }
 
-   
+  public function getDistrict(): string
+  {
+    return $this->district;
+  }
+
+  public function setDistrict(string $district): void
+  {
+    $this->district = $district;
+  }
+
+  public function getStreet(): string
+  {
+    return $this->street;
+  }
+
+  public function setStreet(string $street): void
+  {
+    $this->street = $street;
+  }
+
+  public function getNumber(): string
+  {
+    return $this->number;
+  }
+
+  public function setNumber(string $number): void
+  {
+    $this->number = $number;
+  }
+
+  public function getComplement(): string
+  {
+    return $this->complement;
+  }
+
+  public function setComplement(string $complement): void
+  {
+    $this->complement = $complement;
+  }
+
 }

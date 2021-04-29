@@ -92,5 +92,23 @@ class User
         $this->Email = $Email;
     }
 
-    
+    public function getAddress(): Address
+  {
+    return $this->address;
+  }
+
+  public function setAddress(Address $address): void
+  {
+    $this->address = $address;
+  }
+
+    public function getContato()
+  {
+    return $this->contato;
+  }
+
+  public function addContato(Contato $contato)
+  {
+    $this->contato[] = $contato;
+  }
 }

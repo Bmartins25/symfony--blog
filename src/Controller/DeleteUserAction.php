@@ -7,16 +7,14 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Serializer\SerializerInterface;
 
-class GetUserAction
+class DeleteUserAction
 {
-  public function __construct(private EntityManagerInterface $entityManager, private SerializerInterface $serializer)
+  public function __construct(private EntityManagerInterface $entityManager)
   {
-    
   }
 
-  #[Route("/users/{id}", methods:["GET"])]
+  #[Route('/users/{id}', methods: ['DELETE'])]
   public function __invoke(int $id): Response
   {
     $repository = $this->entityManager->getRepository(User::class);
@@ -28,10 +26,9 @@ class GetUserAction
       ], Response::HTTP_NOT_FOUND);
     }
 
-    return JsonResponse::fromJsonString($this->serializer->serialize($user, 'json', [
-      'circular_reference_handler' => function($object){
-        return $object->getId();
-      }
-    ]));
+    $this->entityManager->remove($user);
+    $this->entityManager->flush();
+
+    return new Response(status: Response::HTTP_NO_CONTENT);
   }
 }
