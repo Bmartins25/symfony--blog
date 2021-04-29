@@ -1,7 +1,7 @@
 Professor boa noite!
 Enviando 2 testes apenas com usuários.
 
-Faltando testes infelizmente consegui a tempo.
+Faltando outros testes, infelizmente não consegui a tempo.
 
 OBS: Tarefa complexa demais
 
